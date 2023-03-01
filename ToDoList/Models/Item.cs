@@ -10,9 +10,9 @@ namespace ToDoList.Models
 
     public Item(string description)
     {
-        Description = description;
-        _instances.Add(this);
-        Id = _instances.Count;
+      Description = description;
+      _instances.Add(this);
+      Id = _instances.Count;
     }
 
     public static List<Item> GetAll()
@@ -27,7 +27,7 @@ namespace ToDoList.Models
 
     public static Item Find(int searchId)
     {
-        return _instances[searchId - 1];
+      return _instances[searchId - 1];
     }
   }
 }
