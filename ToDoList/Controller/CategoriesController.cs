@@ -27,6 +27,17 @@ namespace ToDoList.Controllers
       return RedirectToAction("Index");
     }
 
+    [HttpGet("/categories/{id}")]
+    public ActionResult Show(int id)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Category selectedCategory = Category.Find(id);
+      List<Item> categoryItems = selectedCategory.Items;
+      model.Add("category", selectedCategory);
+      model.Add("items", categoryItems);
+      return View(model);
+    }
+
     // This one creates new Items within a given Category, not new Categories:
     [HttpPost("/categories/{categoryId}/items")]
     public ActionResult Create(int categoryId, string itemDescription)
@@ -40,16 +51,25 @@ namespace ToDoList.Controllers
       model.Add("category", foundCategory);
       return View("Show", model);
     }
-  
-    [HttpGet("/categories/{id}")]
-    public ActionResult Show(int id)
-    {
-      Dictionary<string, object> model = new Dictionary<string, object>();
-      Category selectedCategory = Category.Find(id);
-      List<Item> categoryItems = selectedCategory.Items;
-      model.Add("category", selectedCategory);
-      model.Add("item", categoryItems);
-      return View(model);
-    }
+
+    // [HttpPost("/categories/{categoryId}/items/delete")]
+    // public ActionResult DeleteAll(int categoryId)
+    // {
+    // Item.ClearAll();
+    // Category selectedCategory = Category.Find(categoryId);
+    // List<Item> categoryItems = selectedCategory.Items;
+    // categoryItems.Clear();
+
+    // Dictionary<string, object> model = new Dictionary<string, object>();
+    // model.Remove("category");
+    // model.Remove("item");
+
+    // return View(model);
+    // model.Clear("category", selectedCategory); // categoryItems
+    // return View();
+    // }
+
+    // var item = myList.Find(x => x.ItemName == obj.ItemName);
+    // myList.Remove(item);
   }
 }
