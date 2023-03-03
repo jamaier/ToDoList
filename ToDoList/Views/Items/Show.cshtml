@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<hmtl>
+<html>
     <head>
         <meta charset="utf-8" />
         <title>My To-Do List!</title>
@@ -10,11 +10,18 @@
     </head>
     <body>
         <h1>To Do List Item Details: </h1>
-        
-        <h2>@Model["item"].Description</h2>   
-        <h2>Category: @Model["category"].Name</h2>
-        
-        <a href='/categories/@Model["category"].Id/items/new'>Add another item</a>
-        <a href="/categories">View all categories</a>
+
+        <h2>@Model["item"].Description</h2>
+        <ul>
+            @foreach(string item in Model["category"].Items)
+            {
+                <li>Category: @Model["category"].Name</li>     <a><button></a>
+            }
+        </ul>
+        <a href='/categories/@Model["category"].Id/items/new'>Add another item</a><br>
+        <a href='/categories'>View all categories</a><br>
+        <!-- <a href='/categories/@Model["category"].Id/items/@Model["item"].Id/delete'>Delete Item</a><br> -->
+        <!-- <a href=@("DeleteThisPackage/(Model.IndexOf(item))")></a> -->
+        <p><a href="/">Back home</a></p>
     </body>
 </html>

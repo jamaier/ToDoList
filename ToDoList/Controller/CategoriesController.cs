@@ -52,10 +52,29 @@ namespace ToDoList.Controllers
       return View("Show", model);
     }
 
-    // [HttpPost("/categories/{categoryId}/items/delete")]
+    [HttpPost("/categories/{categoryId}/items/{itemId}/delete")]
+
+    //should be a model method probably
+    public ActionResult Delete(int categoryId, int itemId)
+    {
+      Category selectedCategory = Category.Find(categoryId);
+      Item selectedCategoryItem = selectedCategory.Items.Find(item => item.Id == itemId);
+
+      foreach (Item item in selectedCategory.Items)
+      {
+        if (item.Id == itemId)
+        {
+          selectedCategory.Items.Remove(item);
+          break;
+        }
+      }
+
+      return RedirectToAction("Show", new { id = categoryId });
+    }
+
     // public ActionResult DeleteAll(int categoryId)
     // {
-    // Item.ClearAll();
+    // // Item.ClearAll();
     // Category selectedCategory = Category.Find(categoryId);
     // List<Item> categoryItems = selectedCategory.Items;
     // categoryItems.Clear();
