@@ -15,13 +15,13 @@
         <ul>
             @foreach(string item in Model["category"].Items)
             {
-                <li>Category: @Model["category"].Name</li>     <a><button></a>
+                <li>Category: @Model["category"].Name</li> <!-- <a href="delete/catagory/xxxxx/item/xxxxx/"><button></a> -->
             }
         </ul>
         <a href='/categories/@Model["category"].Id/items/new'>Add another item</a><br>
         <a href='/categories'>View all categories</a><br>
-        <!-- <a href='/categories/@Model["category"].Id/items/@Model["item"].Id/delete'>Delete Item</a><br> -->
-        <!-- <a href=@("DeleteThisPackage/(Model.IndexOf(item))")></a> -->
+        <a href='/categories/@Model["category"].Id/items/@Model["item"].Id/delete'>Delete Item</a><br> 
+         <a href=@("DeleteThisPackage/(Model.IndexOf(item))")>Delete</a> 
         <p><a href="/">Back home</a></p>
     </body>
 </html>
