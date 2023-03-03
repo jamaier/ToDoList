@@ -7,3 +7,9 @@ div#footer {
 	background:#333;
 	padding:8px;
 }
+
+body{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
