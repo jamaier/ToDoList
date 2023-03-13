@@ -15,7 +15,10 @@ else
   <ul>
     @foreach (Item item in Model)
     {
+      <form>
       <li>@Html.ActionLink($"{item.Description}", "Details", new { id = item.ItemId }) | @item.Category.Name</li>
+      <input type="checkbox"/>
+      </form>
     }
   </ul>
 }
