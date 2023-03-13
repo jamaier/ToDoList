@@ -12,9 +12,9 @@
 {
   @Html.HiddenFor(model => model.ItemId)
 
-  @Html.LabelFor(model => model.DueDate, "Due Date")
-  @Html.TextBoxFor(model => model.DueDate, new { @class = "form-control", type = "date" })
 
+  @Html.LabelFor(model => model.DueDate, "Due Date")
+  @Html.TextBoxFor(model => model.DueDate, new { @class = "form-control", type = "datetime-local" })
   @Html.LabelFor(model => model.Description)
   @Html.EditorFor(model => model.Description)
 

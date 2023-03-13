@@ -15,6 +15,7 @@ else
 <ul>
 @foreach (Item item in Model)
 {
+  
   <li>
     <input type="checkbox" @(item.IsComplete ? "checked" : "") onclick="location.href='@Url.Action("IsComplete", new { id = item.ItemId, isComplete = !item.IsComplete })'" />
     @if(item.IsComplete)
@@ -23,8 +24,10 @@ else
     }
     else
     {
-      @Html.ActionLink($"{item.Description}", "Details", new { id = item.ItemId })
-      @Html.DisplayFor(modelItem => item.DueDate)
+
+     @Html.ActionLink($"{item.Description}", "Details", new { id = item.ItemId })
+
+     @Html.DisplayFor(modelItem => item.DueDate)
     }
     | @item.Category.Name
   </li>
