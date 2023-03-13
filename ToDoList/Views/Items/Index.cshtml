@@ -12,15 +12,23 @@
 } 
 else
 {
-  <ul>
-    @foreach (Item item in Model)
+<ul>
+@foreach (Item item in Model)
+{
+  <li>
+    <input type="checkbox" @(item.IsComplete ? "checked" : "") onclick="location.href='@Url.Action("IsComplete", new { id = item.ItemId, isComplete = !item.IsComplete })'" />
+    @if(item.IsComplete)
     {
-      <form>
-      <li>@Html.ActionLink($"{item.Description}", "Details", new { id = item.ItemId }) | @item.Category.Name</li>
-      <input type="checkbox"/>
-      </form>
+      <strike>@item.Description</strike>
     }
-  </ul>
+    else
+    {
+      @Html.ActionLink($"{item.Description}", "Details", new { id = item.ItemId })
+    }
+    | @item.Category.Name
+  </li>
+}
+</ul>
 }
 
 <p>@Html.ActionLink("Add new item", "Create")</p>

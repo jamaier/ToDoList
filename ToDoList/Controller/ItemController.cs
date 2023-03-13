@@ -59,6 +59,18 @@ namespace ToDoList.Controllers
       return View(thisItem);
     }
 
+    public ActionResult IsComplete(int id, bool isComplete)
+    {
+      Item item = _db.Items.FirstOrDefault(item => item.ItemId == id);
+      if (item == null)
+      {
+        return NotFound();
+      }
+      item.IsComplete = isComplete;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
     [HttpPost]
     public ActionResult Edit(Item item)
     {
@@ -92,16 +104,16 @@ namespace ToDoList.Controllers
     [HttpPost]
     public ActionResult AddTag(Item item, int tagId)
     {
-      #nullable enable
+#nullable enable
       ItemTag? joinEntity = _db.ItemTags.FirstOrDefault(join => (join.TagId == tagId && join.ItemId == item.ItemId));
-      #nullable disable
+#nullable disable
       if (joinEntity == null && tagId != 0)
       {
         _db.ItemTags.Add(new ItemTag() { TagId = tagId, ItemId = item.ItemId });
         _db.SaveChanges();
       }
       return RedirectToAction("Details", new { id = item.ItemId });
-    }   
+    }
 
     [HttpPost]
     public ActionResult DeleteJoin(int joinId)
@@ -110,6 +122,6 @@ namespace ToDoList.Controllers
       _db.ItemTags.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
-    } 
+    }
   }
 }
