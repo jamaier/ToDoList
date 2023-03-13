@@ -1,0 +1,18 @@
+@{
+  Layout = "_Layout";
+}
+
+@model ToDoList.Models.Item
+
+<h4>Add a due date</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.DueDate, "Due Date")
+  @Html.TextBoxFor(model => model.DueDate, new { @class = "form-control", type = "date" })
+  <br>
+  <input type="submit" value="Add new due date" />
+}
+
+<p>@Html.ActionLink("Add new item", "Create")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
