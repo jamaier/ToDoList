@@ -24,6 +24,7 @@ else
     else
     {
       @Html.ActionLink($"{item.Description}", "Details", new { id = item.ItemId })
+      @Html.DisplayFor(modelItem => item.DueDate)
     }
     | @item.Category.Name
   </li>
